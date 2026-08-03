@@ -7,10 +7,20 @@
 
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 
-# --- get the highlighted text (works whether input arrives via stdin or args)
-SNIPPET="$(cat)"
-if [ -z "${SNIPPET//[[:space:]]/}" ]; then
-  SNIPPET="$*"
+# --- get the text.
+# "--copy": grab the current selection by sending Cmd+C, then read the clipboard.
+#   Use this for apps whose context menu has no Services submenu (e.g. Claude's
+#   code/preview boxes). Needs Accessibility permission for the synthetic Cmd+C.
+# otherwise: read the selection the Services menu passed on stdin (fallback: args).
+if [ "$1" = "--copy" ]; then
+  /usr/bin/osascript -e 'tell application "System Events" to keystroke "c" using command down' >/dev/null 2>&1
+  sleep 0.3
+  SNIPPET="$(pbpaste)"
+else
+  SNIPPET="$(cat)"
+  if [ -z "${SNIPPET//[[:space:]]/}" ]; then
+    SNIPPET="$*"
+  fi
 fi
 
 if [ -z "${SNIPPET//[[:space:]]/}" ]; then

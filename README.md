@@ -61,6 +61,25 @@ The trigger is a keyboard shortcut / Services menu instead of a floating chip �
 macOS reserves cross-app "act on selection" for Services, which is exactly what
 this uses.
 
+### Code boxes / preview panes (where Services isn't available)
+
+Some views — like Claude's own code blocks and preview panes — use a custom
+right-click menu with **no Services submenu**, so ⌥⌘S / right-click won't reach
+them. They do offer **Copy**, so use the copy-based trigger instead:
+
+`ask-subchat.sh --copy` sends ⌘C, then answers on the clipboard. Bind it to a
+hotkey with a **Shortcut** (one-time, ~30s):
+
+1. Open the **Shortcuts** app → **＋** → name it `Ask in SubChat (copy)`.
+2. Add a **Run Shell Script** action, shell `/bin/bash`, script:
+   `bash "$HOME/.claude/subchat/ask-subchat.sh" --copy`
+3. Open the shortcut's details (ⓘ) → **Add Keyboard Shortcut** → e.g. **⌥⌘V**.
+4. First run asks for **Accessibility** permission (for the synthetic ⌘C) — allow it.
+
+Now: select code/preview text → **⌥⌘V** → SubChat answers. One hotkey, no copy
+step needed (it copies for you). Works anywhere Copy works, including sandboxed
+preview iframes.
+
 ## Tweak it
 
 **Change the answer style / persona** — edit the `SYS=` string in

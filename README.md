@@ -6,6 +6,27 @@ your main conversation**. Inspired by the [SubChat](https://github.com/LDubya/su
 Chrome extension, rebuilt with **no browser extension** and **no API key** (it
 reuses your existing Claude Code login).
 
+## Why this is useful
+
+The whole point is **removing the friction of a small question** so you actually
+ask it instead of skipping it or losing your place.
+
+- **Your main thread stays clean.** You don't derail the conversation you're in,
+  open a new chat, or scroll away to ask "wait, what does this line do?" — the
+  answer comes back in a popup and your context is exactly where you left it. In
+  Claude Code, the `subchat` agent runs in its *own* context, so side-questions
+  never pollute the main task's history.
+- **Zero setup per question.** Highlight → one keystroke. Compare that to: open a
+  new chat, paste the snippet, re-explain the context, ask, then switch back.
+  That overhead is why most people just don't ask the small clarifying questions.
+- **Works on anything, anywhere.** A Claude answer, a code file, a PDF, a Slack
+  message, an error in your terminal — any app with selectable text. It's not
+  tied to a website like a browser extension is.
+- **No API key, no extra cost, no new account.** It rides your existing Claude
+  login, exactly like the original SubChat rode your logged-in session.
+- **It lowers the cost of curiosity.** When asking is nearly free, you ask more —
+  and understanding the thing in front of you is usually worth 10 seconds.
+
 ## What's inside
 
 | Piece | Installs to | What it does |
